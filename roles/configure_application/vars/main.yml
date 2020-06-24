@@ -7,4 +7,4 @@ package_list:
     - python3-venv
     - libffi-dev
     - libssl-dev
-app_repo: https://github.com/robin88322/getting-started-python.git
+app_repo: https://github.com/Rednek117/getting-started-python.git
