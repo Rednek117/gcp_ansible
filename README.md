@@ -1,1 +1,1 @@
-# gcp_ansible
+# gcp_training_ansible

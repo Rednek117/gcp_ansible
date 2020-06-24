@@ -1,0 +1,44 @@
+- name: download fluentd
+  get_url:
+    url: https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh
+    dest: "/{{ fluentd_startup_file }}"
+
+- name: add permission to fluent
+  file:
+    path: "/{{ fluentd_startup_file }}"
+    mode: u+x,g+x,o+x
+
+- name: run startup script
+  shell: "/{{ fluentd_startup_file }}"
+
+- name: change log file
+  copy:
+    src: syslog.conf
+    dest: /etc/google-fluentd/config.d/syslog.conf
+
+- name: start fluentd
+  service:
+    name: google-fluentd
+    state: restarted
+
+- name: download cloud SQL proxy
+  get_url:
+    url: https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64
+    dest: /cloud_sql_proxy
+
+- name: add permission
+  file:
+    path: /cloud_sql_proxy
+    mode: u+x,g+x,o+x
+
+- name: Ansible template for cloudsql
+  template:
+        src: cloudsql_proxy.j2
+        dest: /etc/systemd/system/sql-daemon.service
+        mode: 0644
+
+- name: restart daemon
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: sql-daemon

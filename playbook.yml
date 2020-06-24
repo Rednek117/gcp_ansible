@@ -1,0 +1,10 @@
+- hosts: localhost
+  become: yes
+  vars:
+    app_user: pythonapp
+    instalation_path: /opt/app
+  roles:
+    - configure_instance
+    - configure_application
+    - initialize_tables
+    - run_application
