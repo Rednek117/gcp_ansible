@@ -4,7 +4,7 @@
     app_user: pythonapp
     instalation_path: /opt/app
   roles:
-    - configure_instance
-    - configure_application
-    - initialize_tables
-    - run_application
+    - config_instance
+    - config_app
+    - table_initialize
+    - app_run

@@ -1,9 +1,9 @@
-- name: download fluentd
+- name: fluentd download
   get_url:
     url: https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh
     dest: "/{{ fluentd_startup_file }}"
 
-- name: add permission to fluent
+- name: add permission for fluent
   file:
     path: "/{{ fluentd_startup_file }}"
     mode: u+x,g+x,o+x

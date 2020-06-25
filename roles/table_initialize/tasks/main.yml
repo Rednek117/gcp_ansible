@@ -1,16 +1,13 @@
-- name: change premissions
+- name: premissions change
   file:
     dest: /opt/app
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
     recurse: yes
 
-- name: initialize tables
+- name: tables initialization 
   command:
     chdir: "{{ instalation_path }}/7-gce/bookshelf/"
     cmd: "{{ instalation_path }}/7-gce/env/bin/python3 model_cloudsql.py"
   register: result_tables
 
-- name: check if tables created
-  debug:
-    msg: " {{ result_tables }} "

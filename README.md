@@ -1,1 +1,1 @@
-# gcp_training_ansible
+# gc_pansible

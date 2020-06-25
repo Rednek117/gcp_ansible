@@ -1,4 +1,4 @@
-- name: Clone application from repo
+- name: clone app from repo
   git:
     repo: "{{ app_repo }}"
     dest: "{{ instalation_path }}"
@@ -12,7 +12,7 @@
   user:
     name: "{{ app_user }}"
 
-- name: Install virtualenv via pip
+- name: install virtualenv via pip
   pip:
     name: virtualenv
     executable: pip3
